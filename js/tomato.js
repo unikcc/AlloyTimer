@@ -60,6 +60,14 @@ Jx().$package(function(J){
 		};
 		  
 	}
+
+	function formatDate(date) {
+		var year = date.getFullYear();
+		var month = ('0' + (date.getMonth() + 1)).slice(-2); // 月份从0开始，所以加1
+		var day = ('0' + date.getDate()).slice(-2);
+		return year + '/' + month + '/' + day;
+	}
+
 	var startTiming = function(t){
 		if(!isTiming){
 			console.log(t)
@@ -72,6 +80,9 @@ Jx().$package(function(J){
 				taskName:String(taskNameEl.value),
 				planTime: planTime,
 				planStartTime: plan.startTime,
+				planStartDate: formatDate(new Date(plan.startTime)), // 使用自定义的 formatDate 函数
+				// planStartDate: new Date(plan.startTime).toLocaleDateString('zh-CN'), // 修改这里
+				// planStartDate: new Date(plan.startTime).toDateString(), // 新增
 				planStopTime: plan.stopTime,
 				stopTime: null
 			}
@@ -147,10 +158,14 @@ Jx().$package(function(J){
 
 		var task = currentTask;
 
-		var taskDetail = 
-				"任务：【"+task.taskName+"】时间("
-				+J.format.date(new Date(task.planStartTime), "hh:mm")+" - "
-				+J.format.date(new Date(task.planStopTime), "hh:mm")+")";
+		var taskDetail = "任务：【"+task.taskName+"】日期: " + task.planStartDate + " 时间("
+		+J.format.date(new Date(task.planStartTime), "hh:mm")+" - "
+		+J.format.date(new Date(task.planStopTime), "hh:mm")+")";
+
+		// var taskDetail = 
+				// "任务：【"+task.taskName+"】时间("
+				// +J.format.date(new Date(task.planStartTime), "hh:mm")+" - "
+				// +J.format.date(new Date(task.planStopTime), "hh:mm")+")";
 		
 
 		currentTaskEl.innerText = taskDetail+"正在进行中, 你要加油哦！！！";
@@ -167,10 +182,15 @@ Jx().$package(function(J){
 			var task = taskData.taskList[taskId];
 			console.dir(task)
 			var li = $D.node("li");
-			var taskDetail = 
-				"任务：【"+task.taskName+"】时间("
+			// var taskDetail = 
+				// "任务：【"+task.taskName+"】时间("
+				// +J.format.date(new Date(task.planStartTime), "hh:mm")+" - "
+				// +J.format.date(new Date(task.planStopTime), "hh:mm")+")";
+			
+			var taskDetail = "任务：【"+task.taskName+"】日期: " + task.planStartDate + " 时间("
 				+J.format.date(new Date(task.planStartTime), "hh:mm")+" - "
 				+J.format.date(new Date(task.planStopTime), "hh:mm")+")";
+
 			
 			var taskClassName = "";
 			if(!task.stopTime){
