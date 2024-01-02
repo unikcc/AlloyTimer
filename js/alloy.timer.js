@@ -72,6 +72,14 @@ Jx().$package(function(J){
 		};
 		  
 	}
+
+	function formatDate(date) {
+		var year = date.getFullYear();
+		var month = ('0' + (date.getMonth() + 1)).slice(-2); // 月份从0开始，所以加1
+		var day = ('0' + date.getDate()).slice(-2);
+		return year + '/' + month + '/' + day;
+	}
+
 	var startTiming = function(t){
 		if(!isTiming){
 			console.log(t)
@@ -84,6 +92,7 @@ Jx().$package(function(J){
 				taskName:String(taskNameEl.value),
 				planTime: planTime,
 				planStartTime: plan.startTime,
+				planStartDate: formatDate(new Date(plan.startTime)), // 使用自定义的 formatDate 函数
 				planStopTime: plan.stopTime,
 				stopTime: null
 			}
@@ -175,11 +184,16 @@ Jx().$package(function(J){
 
 		var task = currentTask;
 
-		var taskDetail = 
-				"你需要在 "
-				+ J.format.date(new Date(task.planStartTime), "hh:mm")+" - "
-				+ J.format.date(new Date(task.planStopTime), "hh:mm")
-				+ "完成如下事情，加油哦^_^";
+		// var taskDetail = 
+				// "你需要在 "
+				// + J.format.date(new Date(task.planStartTime), "hh:mm")+" - "
+				// + J.format.date(new Date(task.planStopTime), "hh:mm")
+				// + "完成如下事情，加油哦^_^";
+		
+				
+		var taskDetail = "你需要在：" + task.planStartDate + " "
+		+J.format.date(new Date(task.planStartTime), "hh:mm")+" - "
+		+J.format.date(new Date(task.planStopTime), "hh:mm")+" 之间完成【"+task.taskName+"】，加油哦^_^";
 		
 
 		currentTaskEl.innerText = taskDetail;
@@ -202,10 +216,15 @@ Jx().$package(function(J){
 			console.dir(task)
 			li = $D.node("li");
 			$D.addClass(li, "alert");
-			var taskDetail = 
-				"任务：【"+task.taskName+"】时间 "
-				+J.format.date(new Date(task.planStartTime), "hh:mm")+" - "
-				+J.format.date(new Date(task.planStopTime), "hh:mm")+" ";
+			// var taskDetail = 
+				// "任务：【"+task.taskName+"】时间 "
+				// +J.format.date(new Date(task.planStartTime), "hh:mm")+" - "
+				// +J.format.date(new Date(task.planStopTime), "hh:mm")+" ";
+			
+			
+		var taskDetail = "任务：【"+task.taskName+"】日期: " + task.planStartDate + " 时间("
+		+J.format.date(new Date(task.planStartTime), "hh:mm")+" - "
+		+J.format.date(new Date(task.planStopTime), "hh:mm")+")";
 			
 			
 			if(!task.stopTime){
