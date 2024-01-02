@@ -216,11 +216,6 @@ Jx().$package(function(J){
 			console.dir(task)
 			li = $D.node("li");
 			$D.addClass(li, "alert");
-			// var taskDetail = 
-				// "任务：【"+task.taskName+"】时间 "
-				// +J.format.date(new Date(task.planStartTime), "hh:mm")+" - "
-				// +J.format.date(new Date(task.planStopTime), "hh:mm")+" ";
-			
 			
 		var taskDetail = "任务：【"+task.taskName+"】日期: " + task.planStartDate + " 时间("
 		+J.format.date(new Date(task.planStartTime), "hh:mm")+" - "
@@ -251,12 +246,6 @@ Jx().$package(function(J){
 
 	}
 	
-
-	
-
-
-
-
 	$E.on(startWorkButton,"click", function(e){
 		if(!isTiming){
 			if(taskNameEl.value !== text.pleaseStart && taskNameEl.value !== ""){
