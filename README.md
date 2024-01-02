@@ -1,8 +1,9 @@
-AlloyTimer
+UnikTimer
 ==========
-AlloyTimer定时器 - 番茄工作法的时间管理应用
+番茄工作法的时间管理应用
 
-By [AlloyTeam](http://www.AlloyTeam.com/)
+By [Unikcc](http://github.com/unikcc)
+Thanks to [AlloyTeam](http://www.alloyteam.com) for the original design.
 
 
 ### 番茄工作方法
