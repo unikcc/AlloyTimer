@@ -2,7 +2,7 @@ UnikTimer
 ==========
 番茄工作法的时间管理应用
 
-By [Unikcc](http://github.com/unikcc)
+By [Unikcc](http://github.com/unikcc)  
 Thanks to [AlloyTeam](http://www.alloyteam.com) for the original design.
 
 
